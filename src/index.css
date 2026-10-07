@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Blur transition effect when changing theme */
+@keyframes themeBlurTransition {
+  0% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  35% {
+    filter: blur(14px);
+    opacity: 0.94;
+    transform: scale(0.998);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.theme-blur-active {
+  animation: themeBlurTransition 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes blurFlashOverlay {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  40% {
+    opacity: 1;
+    backdrop-filter: blur(16px);
+  }
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+.theme-overlay-flash {
+  animation: blurFlashOverlay 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Neon glow and HUD styling inspired by reference image */
+.hud-glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.35);
+}
+
+.hud-glow-mint {
+  box-shadow: 0 0 15px rgba(57, 169, 0, 0.35);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 4px #00e5ff);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #00e5ff);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Official Google Sign-in Button Styles */
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: WHITE;
+  background-image: none;
+  border: 1px solid #747775;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gsi-material-button:hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button-icon {
+  height: 20px;
+  min-width: 20px;
+  width: 20px;
+  margin-right: 12px;
+}
+
+.gsi-material-button-contents {
+  font-weight: 500;
+}
+
